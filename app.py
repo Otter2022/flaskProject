@@ -1,10 +1,7 @@
 import os
 from flask import Flask
 import psycopg2
-from dotenv import load_dotenv
 app = Flask(__name__)
-
-load_dotenv()
 
 @app.route('/')
 def hello_world():  # put application's code here
@@ -15,8 +12,9 @@ def hello_world():  # put application's code here
 
 class dataBaseWriter():
     def __init__(self):
-        self.conn = psycopg2.connect(host=os.getenv("HOST"), dbname=os.getenv("DBNAME"), user=os.getenv("USER"),
-                                password=os.getenv("PASSWORD"), port=os.getenv("PORT"))
+        print(os.getenv('PASSWORD'))
+        self.conn = psycopg2.connect(host="localhost", dbname="amusmentPark", user="postgres",
+                                password="Wack3yW8v37??", port=5432)
 
     def __enter__(self):
         self.cur = self.conn.cursor()
