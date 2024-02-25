@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, url_for, redirect
+from flask import Flask, render_template, url_for, redirect, jsonify, request
 import psycopg2
 app = Flask(__name__)
 
@@ -8,6 +8,12 @@ def hello_world():  # put application's code here
     rows = getAverageWaitTime()
     data = [{"column1": f" {i[0]}", "column2": i[1], "column3": i[2]} for i in rows]
     return render_template('index.html', rows=len(rows), data=data)
+
+@app.route('/refresh_data')
+def refresh_data():
+    rows = getAverageWaitTime()
+    data = [{"column1": f" {i[0]}", "column2": i[1], "column3": i[2]} for i in rows]
+    return jsonify(data)
 
 class dataBaseWriter():
     def __init__(self):

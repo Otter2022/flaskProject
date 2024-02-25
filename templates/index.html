@@ -24,5 +24,33 @@
             {% endfor %}
         </tbody>
     </table>
+    <div style="text-align: center;">
+        <button id="refreshButton">Refresh Table</button>
+    </div>
 </body>
 {%  endblock %}
+
+<script>
+    document.getElementById('refreshButton').addEventListener('click', function() {
+        fetch('/refresh_data')  // Send a request to a designated route
+            .then(response => response.json())  // Parse the response as JSON
+            .then(newData => {
+                // Update the table with newData (see the section below)
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    });
+
+
+    const tableBody = document.querySelector('tbody');
+    tableBody.innerHTML = '';  // Clear existing rows
+
+    newData.forEach(row => {
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td>${row.column1}</td>
+            <td>${row.column2}</td>
+            <td>${row.column3}</td>
+        `;
+        tableBody.appendChild(newRow);
+    });
+</script>
