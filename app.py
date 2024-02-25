@@ -5,10 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():  # put application's code here
-    with dataBaseWriter() as db_writer:
-        db_writer.execute(f"SELECT * FROM ride_wait_times")
-        rows = db_writer.fetchall()
-    return rows
+    return getAverageWaitTime()
 
 class dataBaseWriter():
     def __init__(self):
@@ -28,6 +25,17 @@ class dataBaseWriter():
         self.cur.close()
         self.conn.close()
 
+def getAverageWaitTime():
+    with dataBaseWriter() as db_writer:
+        db_writer.execute(f"SELECT ride_name, average_wait_time FROM ride_wait_times")
+        rows = db_writer.fetchall()
+    return rows
+
+def getAverageWaitTime():
+    with dataBaseWriter() as db_writer:
+        db_writer.execute(f"SELECT ride_name, current_wait_time FROM ride_wait_times")
+        rows = db_writer.fetchall()
+    return rows
 
 if __name__ == '__main__':
     app.run()
