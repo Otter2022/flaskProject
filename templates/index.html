@@ -5,5 +5,24 @@
 {%  endblock %}
 
 {% block body %}
-<h1>template</h1>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Ride</th>
+                <th>Average Time</th>
+                <th>Current Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in range(rows) %}
+            <tr>
+                <td>{{ data[i].column1 }}</td>
+                <td>{{ data[i].column2 }}</td>
+                <td>{{ data[i].column3 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
 {%  endblock %}

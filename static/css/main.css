@@ -1,4 +1,13 @@
-body {
-    margin: 0;
-    font-family: san-serif;
+/* styles.css */
+.content {
+    text-align: center; /* Centers content within the div */
+}
+
+table {
+    margin: 0 auto; /* Centers the table horizontally */
+    border: 1px solid black; /* Adds a simple outline */
+}
+
+th {
+    text-align: center; /* Centers header text */
 }

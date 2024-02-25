@@ -5,7 +5,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():  # put application's code here
-    return render_template('index.html')
+    rows = getAverageWaitTime()
+    data = [{"column1": f" {i[0]}", "column2": i[1], "column3": i[2]} for i in rows]
+    return render_template('index.html', rows=len(rows), data=data)
 
 class dataBaseWriter():
     def __init__(self):
@@ -27,13 +29,7 @@ class dataBaseWriter():
 
 def getAverageWaitTime():
     with dataBaseWriter() as db_writer:
-        db_writer.execute(f"SELECT ride_name, average_wait_time FROM ride_wait_times")
-        rows = db_writer.fetchall()
-    return rows
-
-def getAverageWaitTime():
-    with dataBaseWriter() as db_writer:
-        db_writer.execute(f"SELECT ride_name, current_wait_time FROM ride_wait_times")
+        db_writer.execute(f"SELECT ride_name, average_wait_time, current_wait_time FROM ride_wait_times")
         rows = db_writer.fetchall()
     return rows
 
