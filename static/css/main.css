@@ -11,3 +11,11 @@ table {
 th {
     text-align: center; /* Centers header text */
 }
+#refreshButton {
+  background-color: #4CAF50; /* Example color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

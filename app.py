@@ -12,7 +12,7 @@ def hello_world():  # put application's code here
 class dataBaseWriter():
     def __init__(self):
         self.conn = psycopg2.connect(host="localhost", dbname="amusmentPark", user="postgres",
-                                password="Wack3yW8v37??", port=5432)
+                                password="???", port=5432)
 
     def __enter__(self):
         self.cur = self.conn.cursor()
