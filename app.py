@@ -1,11 +1,11 @@
 import os
-from flask import Flask
+from flask import Flask, render_template, url_for, redirect
 import psycopg2
 app = Flask(__name__)
 
 @app.route('/')
 def hello_world():  # put application's code here
-    return getAverageWaitTime()
+    return render_template('index.html')
 
 class dataBaseWriter():
     def __init__(self):
